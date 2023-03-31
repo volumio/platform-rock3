@@ -12,7 +12,7 @@ else
 fi
 
 C=$(pwd)
-A=../../armbian-old
+A=../../armbian
 P="rock-3${ver}"
 B="edge"
 T="rock-3${ver}"
