@@ -71,6 +71,7 @@ dpkg-deb -x "${A}/output/debs/armbian-firmware_${ARMBIAN_VERSION}"* "${P}"
 # Copy bootloader stuff
 cp "${P}"/usr/lib/linux-u-boot-${B}-*/u-boot.itb "${P}/u-boot"
 cp "${P}"/usr/lib/linux-u-boot-${B}-*/idbloader.img "${P}/u-boot"
+cp "${P}"/usr/lib/linux-u-boot-${B}-*/rkspi_loader.img "${P}/u-boot"
 
 mv "${P}"/boot/dtb* "${P}"/boot/dtb
 mv "${P}"/boot/vmlinuz* "${P}"/boot/Image
