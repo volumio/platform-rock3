@@ -68,6 +68,11 @@ dpkg-deb -x "${A}/output/debs/linux-image-${B}-${F}_${ARMBIAN_VERSION}"* "${P}"
 dpkg-deb -x "${A}/output/debs/linux-u-boot-${B}-${T}_${ARMBIAN_VERSION}"* "${P}"
 dpkg-deb -x "${A}/output/debs/armbian-firmware_${ARMBIAN_VERSION}"* "${P}"
 
+# Remove unnecessary firmware files
+echo "Remove unused firmware"
+rm -rf "${P}"/lib/firmware/qcom
+rm -rf "${P}"/lib/firmware/dvb*
+
 # Copy bootloader stuff
 cp "${P}"/usr/lib/linux-u-boot-${B}-*/u-boot.itb "${P}/u-boot"
 cp "${P}"/usr/lib/linux-u-boot-${B}-*/idbloader.img "${P}/u-boot"
@@ -102,7 +107,7 @@ touch "${P}"/boot/.next
 cp "${C}"/bootparams/"${P}".armbianEnv.txt "${P}"/boot/armbianEnv.txt
 
 echo "Creating device tarball.."
-tar cJf "${P}_${B}.tar.xz" "$P"
+XZ_OPT=-9 tar cJf "${P}_${B}.tar.xz" "$P"
 
 echo "Renaming tarball for Build scripts to pick things up"
 mv "${P}_${B}.tar.xz" "${P}.tar.xz"
